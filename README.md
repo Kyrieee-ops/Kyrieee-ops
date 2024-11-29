@@ -64,6 +64,11 @@
     - Amazon Elastic Kubernetes Service (EKS)
     - AWS WAF
     - AWS Site-to-Site VPN
+    - Amazon EventBridge
+    - Amazon ECR
+    - AWS CodeCommit
+    - AWS CodeBuild
+    - AWS CodePipeline
 
 
 <img alt="my skills" src="https://skillicons.dev/icons?theme=dark&perline=7&i=docker,kubernetes" />
@@ -86,7 +91,7 @@
 <img alt="my skills" src="https://skillicons.dev/icons?theme=dark&perline=7&i=mysql" />
 
 - DB: 
-    - Oracle 23ai
+    - Oracle 21c
     - MySQL 8.0.35
 
 - Programming Languages: 
@@ -162,8 +167,20 @@
 - Python3.8 -> 3.12のバージョンアップ対応
     - バージョンアップに伴う影響調査: 3.12で廃止されるPythonのクラスや関数などを調査し、調査したクラスや関数が使用されていないか確認
     - バージョンアップ手順書の作成/更新作業の実施: 更新対象のCFnテンプレート修正 -> S3バケットに格納されているCFnテンプレートをCodeCommitにファイルをアップロード -> CFnスタックの更新を実施
+    - Amazon EventBridgeのスケジュールに従って実行されるPythonの動作確認
     
 - Amazon Linux2 -> Amazon Linux2023へのバージョンアップ対応
+    - バージョンアップに伴う影響調査: Dockerfileに記述しているAmazon Linux2のイメージ情報および必要パッケージの情報をAmazon Linux2023に更新し、コンテナが正常に動作するかの検証(docker buildが問題なく完了するか、docker run後に意図したプロセスが立ち上がっているか)
+
+- CloudFormationテンプレートの構築
+    - 
+
+### 本プロジェクトで苦労したこと
+Amazon Linux2(以下AL2)とAmazon Linux2023(以下AL2023)ではベースOSが異なることから、AL2そのままのDockerfileでbuildがうまくいかない、必要なプロセスが立ち上がらないという状況が何度も続き、解消するために非常に苦労しました。
+しかしながら、エラーを遭遇する度に、なぜこのエラーが出るのか？解決方法は何か？を一つ一つ地道に調べて解決していけたことで、非常に理解が深まったことで自信につながりました。
+
+具体的に、AL2はRHEL/CentOSベース、AL2023はFedora34～36ベースとなっているため、FedoraにEPELリポジトリを導入できないことから、lsyncdをパッケージから取得できない問題などが発生し、その点を解決することに苦労しました。
+結果的にFedora 36レポジトリ導入を行い、そこからlsyncdの導入をすることで解決した、という経緯があります。(この点はAWSのサポート外となるため、会社判断となりますが…)
 
 ## 職務内容3 (金融系基盤更改案件にて運用設計エンジニアとして従事 (2022/11～2023/12/31))
 

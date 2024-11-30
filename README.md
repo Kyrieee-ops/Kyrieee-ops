@@ -173,7 +173,7 @@
     - バージョンアップに伴う影響調査: Dockerfileに記述しているAmazon Linux2のイメージ情報および必要パッケージの情報をAmazon Linux2023に更新し、コンテナが正常に動作するかの検証(docker buildが問題なく完了するか、docker run後に意図したプロセスが立ち上がっているか)
 
 - CloudFormationテンプレートの構築
-    - 
+    - 基本的にCloudFormationでの管理になっていることから、追加で必要になったリソースについてはCloudFormationを用いて構築。
 
 ### 本プロジェクトで苦労したこと
 Amazon Linux2(以下AL2)とAmazon Linux2023(以下AL2023)ではベースOSが異なることから、AL2そのままのDockerfileでbuildがうまくいかない、必要なプロセスが立ち上がらないという状況が何度も続き、解消するために非常に苦労しました。

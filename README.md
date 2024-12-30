@@ -69,6 +69,7 @@
     - AWS CodeCommit
     - AWS CodeBuild
     - AWS CodePipeline
+    - AWS Key Managemente Service
 
 
 <img alt="my skills" src="https://skillicons.dev/icons?theme=dark&perline=7&i=docker,kubernetes" />
@@ -149,12 +150,43 @@
 - 外部接続 (Amazon CloudFront)
 - コンテナ (Amazon Elastic Kubernetes Service, コンテナイメージ, マニフェストファイル)
 - データベース (Amazon RDS for MySQL)
+- Kubernetesマニフェストファイル
 
 ## 詳細設計において意識した点
 詳細設計において意識した点は、自分があまり触ったことのないサービスについてはドキュメントを調べるだけではちゃんとした説明をする自信がなかったため、ちょうどその時期開催していたQiita Engineer Festaを利用して都度アウトプットするようにしました。
 そうすることで、自分の中に知識が定着し、レビュー時には「なぜこういう設計にしたのか?」を根拠を持って説明できるようにしました。
 上記をすることでレビュアーに納得してもらえるように意識しました。
 結果、内容には納得していただけることが多かったです。
+
+構築業務において以下を担当
+- CloudFormationテンプレートの作成 
+    - VPC
+    - Internet Gateway
+    - Subnet
+    - Nat Gateway
+    - VPC EndPoint
+    - RouteTable
+    - Security Group
+    - Network ACL
+    - Network Firewall
+    - CloudWatch Logs
+    - S3
+    - KMS
+    - EKS Cluster
+    - ECR
+    - EFS
+
+## 構築業務において苦労した点
+ネットワークに関わるCloudFormationテンプレートを1ヵ月で作り終えてほしい、という要望があり、
+3AZ、本番、検証、開発、災対環境を構築するテンプレートを1から作り上げていくことに相当苦労しました。
+環境差異がある点については`Conditions`および組み込み関数のIf文を使用して条件分岐させるなどして対応することで効率的にコードを記述することを心掛け、膨大な量のリソースを作成する必要があったため、やむを得ず土日も対応し何とかタスクを完了させました。
+
+また、コードを記述する上での細かい規約がなかったため、他の担当者とも書き方の統一をある程度図る必要があったため、簡単ではありますがコードの規約を作成するなど工夫しました。
+具体的には
+    - 各環境差異は`Conditions`を使用して記載する
+    - 論理IDはパラメータシートの値からかけ離れたIDにしない
+    - OutPutsで対象リソースをExportする際には`!Sub`を使用して`Parameter`値を動的にExportし、別yamlでImportできるようにする
+など基本的なルールを設けることで各担当が困らないように考えました。
 
 ## 業務の中で提案事例
 ドキュメントのレビュー前チェックにおいて担当者間によるセルフチェックのクロスチェックを実施する方針でしたが、チャット上でやり取りがされているため、今誰が依頼をしていて、誰がクロスチェックしているのか？がPM、PLがすぐに把握できない状況かつ、チャットが流れてしまい放置される状況を解消すべく、Plannerを活用して各担当者のセルフチェック実施状況を可視化できるように提案しました。

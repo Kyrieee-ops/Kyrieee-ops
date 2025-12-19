@@ -164,12 +164,17 @@
     - Security Group
     - Network ACL
     - Network Firewall
+    - CloudFront
+    - Route53
     - CloudWatch Logs
     - S3
     - KMS
     - EKS Cluster
     - ECR
     - EFS
+    - CodePipeline
+    - CodeBuild
+    - AWS Backup
 
 ## 結合テストにおいて以下を担当
 - 災対切り替え、切り戻し対応
@@ -212,6 +217,8 @@
 ## 構築時のチームでのポジションについて
 CloudFormationのコード規約のたたき台の作成などが評価され、結果的に自分以外の担当者が作成したCloudFormationの有識者レビューに呼ばれるなどされるようになりました。
 デプロイがうまくいかない際に、どのようにコードを記述すべきか？などの提案を実施した事例もございます。
+また、プロジェクト後半では元いたメンバーが離脱したこともあり、CloudFormation全般の改修作業を一人で担当しました。
+主担当ではなかったCI/CD (CodePipeline/CodeBuild等)のCloudFormationテンプレートの改修を実施することで、CI/CDに関する知見も深められました。
 
 ## 職務内容2 (NTTドコモクレジット決済サービス案件にてAmazon Linux/Pythonバージョンアップ対応 (2024/10～職務内容1と並行))
 

@@ -24,8 +24,6 @@
 
 | Certification Date | Certification |
 | --- | --- |
-| 2022.04.30 | AWS Certified Solutions Architect - Associate (SAA) |
-| 2023.10.21 | AWS Certified Solutions Architect - Professional (SAP) |
 | 2024.08.17 | AWS Certified Developer - Associate (DVA) |
 
 ## Linux Certification
